@@ -7,10 +7,14 @@ video=cv2.VideoCapture(0)
 facedetect=cv2.CascadeClassifier('data/haarcascade_frontalface_default.xml')
 
 
-with open('data/names.pkl','rb') as f:
-    LABELS=pickle.load(f)
+with open('data/names.pkl','rb') as w:
+    LABELS=pickle.load(w)
+    LABELS = np.array(LABELS)
 with open('data/faces_data.pkl','rb') as f:
     FACES=pickle.load(f)
+
+print("Faces shape:", FACES.shape)
+print("Labels shape:", LABELS.shape)
 
 
 knn=KNeighborsClassifier(n_neighbors=5)
@@ -38,4 +42,3 @@ while True:
         break
 cv2.destroyAllWindows()
 video.release()
-

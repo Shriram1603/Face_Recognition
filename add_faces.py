@@ -35,20 +35,21 @@ video.release()
 
 #face detection and recognition over
 
-# names  storing
-faces_data=np.asarray(faces_data)
-faces_data=faces_data.reshape(100,-1)
+# names storing
+faces_data = np.asarray(faces_data)
+faces_data = faces_data.reshape(100, -1)
 
-if 'names.pkl' not in os.listdir('data/'):
-    names=[name]*100
-    with open('data/names.pkl','wb') as f:
-        pickle.dump(names,f)
+names_file_path = 'data/names.pkl'
+
+if not os.path.exists(names_file_path):
+    names = [name] * 100
 else:
-     with open('data/names.pkl','rb') as f:
-        names=pickle.load(f)
-     names=names+[name]*100
-     with open('data/names.pkl','wb') as f:
-        pickle.dump(names,f)
+    with open(names_file_path, 'rb') as f:
+        names = pickle.load(f)
+    names += [name] * 100
+
+with open(names_file_path, 'wb') as f:
+    pickle.dump(names, f)
         
 #storing faces
 
